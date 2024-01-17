@@ -1,0 +1,155 @@
+<app-header [authenticated]="authenticated" [title]="title"></app-header>
+<div class="container">
+  <div class="add-todo-box shadow-sm">
+    <!-- [ngFormOptions]="{updateOn: 'blur'}" -->
+    <form
+      #form="ngForm"
+      class="row g-3 align-items-center"
+      (ngSubmit)="OnFormSubmit(form)"
+    >
+      <div
+        class="bg-success text-light fw-bold p-1 shadow-lg rounded text-center"
+        *ngIf="feedbackMessageSuccess"
+      >
+        {{ feedbackMessageSuccess }}
+      </div>
+      <div
+        class="bg-danger text-light fw-bold p-1 shadow-lg rounded text-center"
+        *ngIf="feedbackMessageError"
+      >
+        {{ feedbackMessageError }}
+      </div>
+      <!-- <div class="text-light fw-bold bg-success  p-2" *ngIf="loading">loading request...</div> -->
+      <label for="inlineFormInputGroupUsername" class="form-label fw-bold fs-2"
+        >Cria uma nova tarefa</label
+      >
+      <div class="col-12">
+        <div class="input-group">
+          <input
+            ngModel
+            #todoName="ngModel"
+            name="name"
+            required
+            type="text"
+            class="form-control"
+            id="inlineFormInputGroupUsername"
+            placeholder="Nome"
+          />
+        </div>
+        <p
+          *ngIf="todoName.invalid && showValidationsErrors"
+          class="text-danger"
+        >
+          O campo nome* é obrigatório
+        </p>
+      </div>
+      <div class="col-12">
+        <div class="input-group">
+          <textarea
+            ngModel
+            #todoDescription="ngModel"
+            name="description"
+            required
+            type="text"
+            class="form-control"
+            id="inlineFormInputGroupUsername2"
+            placeholder="Descrição"
+          ></textarea>
+        </div>
+        <p
+          *ngIf="todoDescription.invalid && showValidationsErrors"
+          class="text-danger"
+        >
+          O campo descrição* é obrigatória
+        </p>
+      </div>
+
+      <label class="form-label text-success fw-bold"
+        >*opcional: Cria tarefa(s) carregando um ficheiro Excel</label
+      >
+      <div class="col-12 optional">
+        <div class="input-group">
+          <input
+            (change)="ReadExcel($event)"
+            type="file"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-sm-8 form-check">
+            <input
+              ngModel
+              name="completed"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineFormCheck"
+            />
+            <label class="form-check-label" for="inlineFormCheck">
+              Está concluída?
+            </label>
+          </div>
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary">
+              + Criar nova tarefa
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container mt-4">
+    <label class="form-label fw-bold fs-4">Lista das suas tarefas</label>
+    <div class="todos-list shadow-sm">
+      <table class="table">
+        <thead class="table table-striped table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acção</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todos">
+            @if(todo.ownerId == userid){
+
+            <th scope="row">{{ todo.id }}</th>
+            <td>{{ todo.name }}</td>
+            <td>{{ todo.description }}</td>
+            <td>
+              <label
+                class="{{
+                  todo.complete ? 'bg-success' : 'bg-warning'
+                }}  p-1 rounded text-light"
+              >
+                {{ todo.complete ? "concluído" : "pendente" }}
+              </label>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-sm-6" (click)="OnUpdate(todo.id)">
+                  <a class="btn btn-primary text-light"
+                    ><i class="material-icons">edit</i></a
+                  >
+                </div>
+                <div class="col-sm-6" (click)="OnDelete(todo.id)">
+                  <a class="btn btn-danger text-light"
+                    ><i class="material-icons">delete</i></a
+                  >
+                </div>
+              </div>
+            </td>
+            }
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

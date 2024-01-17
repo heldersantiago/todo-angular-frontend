@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+// @import '../node_modules/bulma/bulma.sass';
+
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.alt-gradient-button {
+  border: none;
+  background: linear-gradient(to right, rgb(96, 116, 231), y rgb(21, 8, 138));
+  color: white;
+  font-weight: 600;
+  opacity: 0.85;
+
+
+  &:hover {
+    opacity: 1;
+    color: white;
+  }
+}
+
+$table-gradient-bg: linear-gradient(to right, #ffcc00, #ff6666);
+
+.table-gradient {
+  thead {
+    background: $table-gradient-bg;
+    color: #fff; // Set the text color to white or another contrasting color
+  }
+}

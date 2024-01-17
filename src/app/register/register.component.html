@@ -1,0 +1,78 @@
+<app-header [authenticated]="authenticated" [title]="title"></app-header>
+
+<section class="shadow-sm p-3 container rounded">
+  <form #form="ngForm" (ngSubmit)="OnRegister(form.value)">
+    <div
+      class="bg-danger text-light fw-bold p-1 shadow-lg rounded text-center"
+      *ngIf="feebackErrorMessage"
+    >
+      {{ feebackErrorMessage }}
+    </div>
+    <div class="form-group w-100 mb-3">
+      <label for="name">Username</label>
+      <input
+        ngModel
+        name="name"
+        required
+        #name="ngModel"
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <p *ngIf="name.invalid" class="text-danger">O campo nome* é obrigatória</p>
+    <div class="form-group w-100 mb-3">
+      <label for="email">Email</label>
+      <input
+        ngModel
+        name="email"
+        required
+        #email="ngModel"
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <p *ngIf="email.invalid" class="text-danger">
+      O campo email* é obrigatória
+    </p>
+    <div class="form-group mb-3">
+      <label for="password">Password</label>
+      <input
+        ngModel
+        name="password"
+        required
+        #password="ngModel"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+    </div>
+    <p *ngIf="password.invalid" class="text-danger">
+      O campo password* é obrigatória
+    </p>
+    <div class="form-group mb-3">
+      <label for="confirmpassword">Confirmar Password</label>
+      <input
+        ngModel
+        name="confirmPassword"
+        required
+        #confirmPassword="ngModel"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+    </div>
+    <p *ngIf="confirmPassword.invalid" class="text-danger">
+      O campo Confirmar password* é obrigatória
+    </p>
+    <div class="mb-3">
+      <div class="form-group form-check mb-3">
+        <a class="nav-link" href="/login">Já possui uma conta?</a>
+      </div>
+      <button type="submit" class="btn btn-dark float-end">Criar conta</button>
+    </div>
+  </form>
+</section>

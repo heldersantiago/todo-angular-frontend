@@ -1,0 +1,37 @@
+<section class="heading-section">
+  @if (authenticated) {
+  <div class="d-flex justify-content-end">
+    <div class="dropdown">
+      <button
+        class="btn dropdown-toggle text-light fw-bold"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="true"
+      >
+        <i class="material-icons text-light">person</i>
+        {{ username }}
+      </button>
+      <ul class="dropdown-menu bg-primary p-2">
+        <li>
+          <a
+            style="text-decoration: none"
+            class="drop-i text-light fw-bold p-2"
+            href="/"
+            >{{ useremail }}</a>
+        </li>
+        <br>
+        <li>
+          <a
+            href="/login"
+            (click)="Logout()"
+            class="text-light fw-bold p-2"
+            style="text-decoration: none"
+            >LOGOUT<i class="material-icons text-light p-1 fw-bold">logout</i
+            ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  }
+  <h1 class="title text-center">{{ title }}</h1>
+</section>

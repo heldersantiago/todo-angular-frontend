@@ -1,0 +1,11 @@
+.heading-section {
+    // background: radial-gradient(circle, rgb(13, 71, 156) 0%, rgb(108, 215, 236) 100%);
+    background: linear-gradient(to right, rgb(13, 71, 156), rgb(108, 215, 236));
+    padding: 100px;
+
+    h1.title {
+        color: white;
+        font-weight: bold;
+        text-shadow: 0px 1px 2px rgb(black, 0.2);
+    }
+}

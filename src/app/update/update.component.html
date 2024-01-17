@@ -1,0 +1,46 @@
+{% comment %} <app-header [authenticated]="authenticated" [title]="title"></app-header>
+
+<section class="shadow-sm p-3 container rounded">
+  <form #form="ngForm" (ngSubmit)="Login(form)">
+    <div
+      class="bg-success text-light fw-bold p-1 shadow-lg rounded text-center"
+      *ngIf="successMessage"
+    >
+      {{ successMessage }}
+    </div>
+    <div
+      class="bg-danger text-light fw-bold p-1 shadow-lg rounded text-center"
+      *ngIf="errorMessage"
+    >
+      {{ errorMessage }}
+    </div>
+    
+    <div class="form-group w-100 mb-3">
+      <label for="exampleInputEmail1">Email</label>
+      <input
+        ngModel
+        name="email"
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        ngModel
+        name="password"
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+    </div>
+    <div class="mb-3">
+      <div class="form-group form-check mb-3">
+        <a class="nav-link" href="/register">Não possui uma conta?</a>
+      </div>
+      <button type="submit" class="btn btn-dark float-end">LOG IN</button>
+    </div>
+  </form>
+</section> {% endcomment %}
